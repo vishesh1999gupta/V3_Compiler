@@ -1,1 +1,1 @@
-web: node ./FrontEnd/app.js
+web: node app.js
