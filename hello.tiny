@@ -1,0 +1,3 @@
+IF 2 < 3 THEN
+	PRINT "Aaa"
+ENDIF
