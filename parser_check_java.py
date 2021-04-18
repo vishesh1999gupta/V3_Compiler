@@ -199,7 +199,10 @@ class Parser:
             while self.checkToken(TokenType.IDENT) or self.checkToken(TokenType.NUMBER):
                 count += 1
                 if self.checkToken(TokenType.IDENT):
-                    self.match(TokenType.IDENT)
+                    if self.curToken.text not in self.symbols:
+                        self.abort("Referencing variable before assignment: " + self.curToken.text)
+                    else:
+                        self.match(TokenType.IDENT)
                 else:
                     self.match(TokenType.NUMBER)
                 if self.checkToken(TokenType.COMMA):
