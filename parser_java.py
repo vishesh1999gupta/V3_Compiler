@@ -58,9 +58,11 @@ class Parser:
         self.emitter.headerLine("import java.lang.*;")
         self.emitter.headerLine("import java.io.*;")
 
-        self.emitter.headerLine("public class out{")
+        self.emitter.headerLine("public class Main{")
         
         indent += 1
+        while self.checkToken(TokenType.NEWLINE):
+            self.nextToken()
         while self.checkToken(TokenType.FUNC):
             self.statement()
         

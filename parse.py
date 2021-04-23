@@ -56,8 +56,11 @@ class Parser:
     def program(self):
         global indent
         self.emitter.headerLine("#include <stdio.h>")
+        while self.checkToken(TokenType.NEWLINE):
+            self.nextToken()
         while self.checkToken(TokenType.FUNC):
             self.statement()
+        
         self.emitter.emitLine("int main(void){")
         indent += 1
         # Since some newlines are required in our grammar, need to skip the excess.

@@ -53,6 +53,8 @@ class Parser:
     # program ::= {statement}
     def program(self):
         # self.emitter.headerLine("#include <stdio.h>")
+        while self.checkToken(TokenType.NEWLINE):
+            self.nextToken()
         while self.checkToken(TokenType.FUNC):
             self.statement()
         # self.emitter.emitLine("int main(void){")
@@ -87,7 +89,7 @@ class Parser:
                 # Simple string, so print it.
                 for x in range(indent):
                     self.emitter.emit("    ")
-                self.emitter.emitLine("print(\"" + self.curToken.text + "\\n\")")
+                self.emitter.emitLine("print(\"" + self.curToken.text + "\")")
                 self.nextToken()
 
             else:

@@ -56,6 +56,8 @@ class Parser:
         global indent
         self.emitter.headerLine("#include <iostream>")
         self.emitter.headerLine("using namespace std;")
+        while self.checkToken(TokenType.NEWLINE):
+            self.nextToken()
         while self.checkToken(TokenType.FUNC):
             self.statement()
         self.emitter.emitLine("int main(){")
